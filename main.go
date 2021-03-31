@@ -49,10 +49,13 @@ func getAnime(c *gin.Context) {
 		Image   string `json:"image"`
 	}
 	id := c.Param("id")
-	list, err := http.Get("https://yummyanime.club/users/get-remote-list?user_id=107327&list_id=" + id)
+	client := http.Client{}
+	req, _ := http.NewRequest("GET", "https://yummyanime.club/users/get-remote-list?user_id=107327&list_id="+id, nil)
+	list, err := client.Do(req)
 	if err != nil {
 		c.JSON(http.StatusOK, map[string]interface{}{
 			"error": "Ошибка запроса",
+			"err":   err.Error(),
 		})
 		return
 	}
