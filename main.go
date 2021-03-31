@@ -52,6 +52,7 @@ func getAnime(c *gin.Context) {
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", "https://yummyanime.club/users/get-remote-list?user_id=107327&list_id="+id, nil)
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0")
+	req.Header.Add("Host", "localhost")
 
 	list, err := client.Do(req)
 	if err != nil {
