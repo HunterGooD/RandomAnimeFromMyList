@@ -62,6 +62,7 @@ func getAnime(c *gin.Context) {
 	if err := json.Unmarshal(b, &ListAnime); err != nil {
 		c.JSON(http.StatusOK, map[string]interface{}{
 			"error": "Ошибка парсинга",
+			"err":   err.Error(),
 		})
 		return
 	}
